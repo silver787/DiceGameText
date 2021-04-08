@@ -1,8 +1,12 @@
-import pickle
 import random
+
+# imports the random modules to generate random numbers to be used as players dice rolls
 
 LOGINS_FILE = "logins.txt"
 HIGH_SCORES_FILE = "highscores.txt"
+
+
+# constants specify the locations of the logins file, and the highscores file
 
 
 class Player:
@@ -14,10 +18,16 @@ class Player:
         self.roll_2 = 0
 
 
+# creates a player class used to store related information about players that log in
+
+
 class Game:
     def __init__(self):
         self.round = 0
         self.turn = 1
+
+
+# creates a game class to store related information about games that are being played
 
 
 def validate(word):
@@ -25,6 +35,10 @@ def validate(word):
         return True
     else:
         return False
+
+
+# a function used to validate user input e.g. passwords, to ensure they are strong enough,
+# and in the case of usernames, be sustainably created
 
 
 def evaluate(roll_1, roll_2):
@@ -39,9 +53,13 @@ def evaluate(roll_1, roll_2):
     return res
 
 
+# a function that determines certain characteristics about a roll, such as whether it is even, or is a double
+
+
 def login(player):
+    """A function that allows a user to login, this function is repeated twice: once for player one, and once for player two"""
     while True:
-        choice_1 = input(f"Player {player}, do you want to login, create an account, or exit? (L/C/E)?: ")
+        choice_1 = input(f"Player {player}, do you want to login, create an account, or exit? (L/C/E): ")
         if choice_1.upper() == "L":
             while True:
                 choice_2 = input("Are you sure you want to login? (Y/N): ")
@@ -107,13 +125,12 @@ while True:
                 try:
                     if len(players_and_scores) >= 10:
                         for i in range(10):
-                            result += f"[{i+1} - {players_and_scores[i].split(' ')[0]}: " \
+                            result += f"[{i + 1} - {players_and_scores[i].split(' ')[0]}: " \
                                       f"{players_and_scores[i].split(' ')[1]}]\n"
                     else:
                         result = "[Sorry, there are not enough scores to show.]"
                 except:
                     result = "[Error: scores could not be shown.]"
-
 
                 print(f"[Highscores:]\n{result}")
 
@@ -148,34 +165,5 @@ while True:
             print("[Exiting...]")
             quit()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# this is the main loop for the game, it repeats until five rounds have occured and one player has
+# a score which is greater than the other
