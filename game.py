@@ -72,7 +72,7 @@ def login(player):
                         for i in f:
                             i = i.split(' ')
                             if i[0] == login_username and i[1].strip() == login_password:
-                                print(f"Congratulations player {player}, login sucessful.")
+                                print(f"Congratulations player {player}, login successful.")
                                 return Player(login_username, login_password)
 
                     print("Invalid input detected, please try again.")
